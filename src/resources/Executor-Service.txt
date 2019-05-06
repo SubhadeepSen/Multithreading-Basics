@@ -1,0 +1,27 @@
+ExecutorService:
+---------------
+-->	It helps to create multiple thread easily and provide different features.
+
+
+1.	ExecutorService executorService = Executors.newCachedThreadPool();
+	-->	going to return an executorService that can dynamically reuse threads
+	-->	before starting a job, it is going to check whether there are any thread that finished the job, reuse them.
+	-->	If there are no waiting threads, it is going to create another one
+	-->	good for the processor, effective solution
+	
+2.	ExecutorService executorService = Executors.newFixedThreadPool(N);
+	-->	maximize the number of threads that can be used
+	-->	if we want to start a job, if all the threads are busy, we have to wait for one to terminate
+
+3.	ExecutorService executorService = Executors.newSingleThreadExecutor();
+	-->	it uses a single thread for the job
+	
+
+		submit() ---> Runnable + Callable interfaces
+		execute() ----> Runnable interface only
+		
+		
+*** So far we have used the Runnable interface and Thread class to create a Thread. But the run() method does return anything in response.
+*** We can also create Thread with the help of Callable<T> interface and overriding the call() method which returns a value in response.
+*** We can use the submit() method of ExecutoreService to execute a thread implemented by Callable interface.
+*** The submit() method returns a Future<T> object from which we can access the returned value from call() method.

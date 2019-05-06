@@ -1,0 +1,19 @@
+
+		1.	new (when we create new Thread)
+			 |
+			 |
+		2.	runnable(when we call start() method)
+			 |
+			 |			
+		3.	running (executing)
+			 |
+			 |
+		4.	waiting (waiting for other threads to complete, can be dead or runnable again)
+			 |
+			 |
+		5.	dead
+
+Thread Execution:
+-----------------
+	-> Multi Core Processor: Parallel execution
+	-> Single Core Processor: Multithreaded execution (Time slicing between multiple threads)

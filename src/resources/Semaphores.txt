@@ -1,0 +1,27 @@
+SEMAPHORES:
+-----------
+	-> 	Invented by Dijkstra in 1962
+	->	Semaphores are variables or ADT that are used for controlling access to a common resource
+	->	Important in OS
+	->	Semaphore is a record of how many units of a particular resource are available ... wait until a unit of the resource becomes available.
+	->	Counting Semaphore: allows an arbitrary resource count
+	->	Binary Semaphore: are restricted to the value 0 and 1.
+	->	Semaphore tracks only how many resources are free, it does not keep track of which of the resources are free.
+	->	The Semaphore count may serve as a useful trigger for a number of different actions.
+	->	Produce-Consumer problem can be implemented with the help of Semaphores. 
+	
+MUTEXES:
+--------
+	->	A mutex is essentially the same thing as Binary Semaphore.
+	->	While a Binary Semaphore may be used as a mutex, a mutex is a more specific use-case
+	->	Mutex has a concept of an owner. Only the process that locked the mutex is supposed to unlock it.
+	->	Mutex may provide priority inversion safety. If the Mutex knows it's current owner, it is possible to promote the priority of the owner
+		whenever a higher-priority task starts waiting on the mutex.
+	->	Mutex can provide deletion safety.
+	
+---> semaphore maintains a set of permits
+---> acquire() -> if a permit is available then takes it
+---> release() -> adds a permit
+---> semaphore just keeps a count of the number available
+---> new Semaphore(int permits, boolean fairnessParameter)
+---> permits: the number of threads concurrently access a resource

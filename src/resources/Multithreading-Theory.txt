@@ -1,0 +1,39 @@
+Process:
+--------
+	-> A process has a self-contained execution environment
+	-> Has a private set of basic run-time resources
+	-> Each process has it's own memory space
+	-> Process can communicate with other processes [Inter Process Communication or IPC]
+	-> IPC is used not just for communication between processes on the same system, but processes on different systems
+	-> In Java: ProcessBuilder helps to create a Process
+	
+Threads:
+--------
+	-> Threads are lightweight processes
+	-> Both processes and threads provide an execution environment, but creating a thread requires fewer resources than creating a new process
+	-> Threads exist with in a Process
+	-> Every process has at least one thread
+	-> Threads share the Process's resources: including memory and open files [hence synchronization required]
+	-> Java Application: System Thread (Memory Management) + Main Thread (we can create new threads with the help of main thread)
+	-> In Java: Main Thread is also known as application thread
+	
+* In command line, execute 'tasklist' command to see all the active processes, every process has an Id (called PID), session and memory usage.
+
+Advantages of MultiThreading:
+-----------------------------
+	-> We can design more responsive softwares ----> do several things at the same time
+	-> We can achieve better resource utilization
+	-> We can improve performance
+	For example, your copying three files at the same destination in parallel
+	
+Disadvantages of MultiThreading:
+-----------------------------
+	-> Multithreading is not always better
+	-> Threads manupulate data located on the same memory area ----> we have to take it into consideration
+	-> Difficult to design multithreaded software
+	-> Hard to detect errors
+	-> Expensive Operation: switching between threads is expensive, CPU saves local data, pointers ... of the current thread and loads the data of other thread
+	
+Thumb Rule: For small problems it is unnecessary to use mutltithreading, it may be slower than single threaded applications.
+			Multithreaded sorting is slower for small number of items
+			

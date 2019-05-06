@@ -1,0 +1,21 @@
+
+	-> It has the same behavior as the 'synchronized approach'
+	-> It has some additional features
+	
+Constructor:
+------------
+	new ReentrantLock(boolean fairnessParameter)
+	
+	-> fairnessParameter: If it is set to true, the longest waiting thread will get the lock
+						  If it is set to false, there is no access order
+						  
+	-> IMPORTANT: We have to use try-catch block when doing critical operation that may throw exceptions	
+				  We call unlock() method in the finally block otherwise there is possibility of Deadlock situation if the lock is not released	
+				  
+				  
+Reentrant Lock Vs. Synchronized Block:
+--------------------------------------
+	->	We can make a lock fair using ReentrantLock, it helps to prevent thread starvation. Synchronized blocks are unfair by default.
+	->	We can check whether the given lock is held or not with ReentrantLocks
+	->	We can get the list of threads waiting for the given lock with ReentrantLock.
+	->	Synchronized blocks are nicer, we do not need try-catch-finally block unlike ReentrantLocks.

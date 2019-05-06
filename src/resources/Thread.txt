@@ -1,0 +1,25 @@
+
+	Consider a Dual-Core CPU:
+	-------------------------
+	-> Each core is associated with it's own cache, where it stores the variable to increase performance
+
+   |---------|
+   |		 |			|------------------------|
+   |		 |			|						 |		
+   |  Main	 |		    | Thread1 -> CPU -> Cache|	Core 1: Any variable stored in this cache will not be visible/accessible to Thread 2
+   | Memory	 |			|						 |			*** Not always variables are cached
+   |		 |			|------------------------|
+   |  (RAM)	 |
+   |		 |          |------------------------|
+   |		 |          |						 |
+   |		 |          | Thread2 -> CPU -> Cache|	Core 2: Any variable stored in this cache will not be visible/accessible to Thread 1
+   |		 |          |						 |          *** Not always variables are cached
+   |         |			|------------------------|
+   |---------|
+   
+   -> What if Thread1 should respond upon a change in variable made by Thread2, storing the variable in cache would not work here.
+   	  So we will have to store the variable in a place which is accessible by both the Threads and the place is RAM by using volatile 
+   	  keyword with the variable.
+   -> When volatile keyword is used with a variable, it will be read from the main memory (RAM), not from cache
+   -> Caches are faster ---> do not use volatile keyword if not necessary, it prevents instruction reordering 
+   							 which is a performance boost technique
