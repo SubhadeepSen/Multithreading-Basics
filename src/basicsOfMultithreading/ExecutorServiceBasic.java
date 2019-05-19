@@ -18,7 +18,7 @@ public class ExecutorServiceBasic {
 		/*ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 		// creating 5 jobs but there are only 3 threads, so 3 threads can run in parallel
-		//	hence first 3 threads will take first 3 jobs, once job rest 2 threads will take 2 jobs
+		//	hence first 3 threads will take first 3 jobs, once job completed rest 2 threads will take 2 jobs
 		for (int i = 0; i < 5; i++) {
 			executorService.submit(new WorkerExecutor());
 		}*/

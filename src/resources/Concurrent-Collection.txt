@@ -1,0 +1,71 @@
+Concurrent Collection:
+---------------------
+
+	1.	CountDownLatch:
+	*******************	
+		--> This is used to synchronize one or more tasks by forcing them to wait for the completion of set operations being performed by other tasks.
+			Multiple threads can wait for each other.		
+		-->	You give an initial count to a CountDownLatch object and any task that calls await() on that object will be blocked until the count reaches
+			to zero.			
+		-->	Other tasks may call countDown() on that object to reduce the count, presumably when a task finishes its job		
+		-->	a CountDownLatch ---- the count cannot be reset.
+							 ---- If you need a version that resets the count, you can use CyclicBarrier instead.							 
+		-->	The tasks that call countdown() are not blocked when they make that call.
+			---	Only the call to await() is blocked until the count reaches to zero.			
+		-->	A typical used is to divide a problem into N independently solvable tasks and create a CountDownLatch with a value of N.
+			---	When each task is finished it calls countDown() on the latch. Tasks waiting for the problem to be solved call await()
+				on the latch to hold themselves back until it is completed.				
+		-->	For Example: you want to trigger something after 10,000 users download an image.
+		 
+	2.	CyclicBarrier:
+	******************		
+		-->	A CyclicBarrier is used in situations where you want to create a group of tasks to perform work in parallel + wait until they are all
+			finished before moving on to the next step.
+				--- something like joins()
+				---	something like CountDownLatch
+				
+			--- CountDownLatch: one-shot event
+			--- CyclicBarrier: it can be reused over and over again. CyclicBarrier has a barrier action; a runnable, that will run automatically
+				when the count reaches to zero.
+				
+			new CyclicBarrier(N) --> N threads will wait for each other.
+			
+			We cannot reuse CountDownLatch but we can reuse CyclicBarrier --> reset().
+			
+	3.	BlockingQueue:
+	******************
+		-->	A queue interface that is thread safe.
+			Put items or take items from it.		
+		-->	For example, One thread is putting items into the queue and another thread is taking items from it at the same time.
+			We can do it with Producer-Consumer pattern.
+			
+			put() --- putting items into the queue
+			take() --- taking items from the queue
+			
+	4.	DelayedQueue:
+	*****************
+		-->	This is an unbounded BlockingQueue of objects that implements the Delayed interface		
+		-->	DelayedQueue keeps the elements internally until a certain delay has expired		
+		-->	An object can only be taken from the queue when its delay has expired		
+		-->	We cannot place null items in the queue - The queue is sorted so that the object at the head has a delay that has expired for the longest time.		
+		-->	If no delay has expired then there is no head element and the poll() will return null		
+		-->	size() returns the count of both expired and unexpired items.
+		
+	5.	PriorityBlockingQueue:
+	**************************
+		-->	It implements the BlockingQueue interface
+		-->	Unbounded concurrent queue
+		-->	It uses the same ordering rules as the java.util.PriorityQueue class - have to implement the Comparable interface
+		-->	The comparable interface will determine what will the order in the queue be
+		-->	The priority can be the same compare() == 0 case
+		-->	No null items
+		
+	6.	ConcurrentHashMap:
+	**********************
+		--> Synchronous HashMap
+		
+	6.	Exchanger:
+	**************
+		-->	With the help of exchanger two threads can exchange objects
+		-->	exchange() - exchanging objects is done via one of the two exchange() methods
+		-->	For example: genetic algorithm, training neural networks
